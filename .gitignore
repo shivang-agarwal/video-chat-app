@@ -1,0 +1,10 @@
+#MedClick .gitignore file
+
+#ignore all the node modules and extra files
+node_modules
+package-lock.json
+~
+
+#ignoring hidden files except .gitignore
+.*
+!/.gitignore
