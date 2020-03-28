@@ -28,7 +28,7 @@ export class Server {
 
 	private handleRoutes(): void {
   		this.app.get("/", (req, res) => {
-     		res.send(`<h1>Hello World</h1>`); 
+     		res.send(`<h1>MedClick video app is running ...</h1> <p>add /index.html in url</p>`); 
    	});
 	}
  
