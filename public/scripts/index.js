@@ -61,8 +61,8 @@ function updateUserList(socketIds) {
     }
   });
 }
-
-const socket = io.connect("localhost:5000");
+const host = window.location.host;
+const socket = io.connect(host);
 
 socket.on("update-user-list", ({ users }) => {
   updateUserList(users);
@@ -131,7 +131,7 @@ navigator.getUserMedia = ( navigator.getUserMedia ||
   navigator.webkitGetUserMedia ||
   navigator.mozGetUserMedia ||
   navigator.msGetUserMedia);
-  
+
 navigator.getUserMedia(
   { video: true, audio: true },
   stream => {
