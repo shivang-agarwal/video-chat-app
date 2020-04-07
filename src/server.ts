@@ -17,8 +17,7 @@ export class Server {
 		this.handleRoutes();
 		this.handleSocketConnection();
 		this.configureApp();
-   		this.handleSocketConnection();
-	}
+  }
 
 	private initialize(): void{
 		this.app = express();
@@ -28,11 +27,12 @@ export class Server {
 
 	private handleRoutes(): void {
   		this.app.get("/", (req, res) => {
-     		res.send(`<h1>MedClick video app is running ...</h1> <p>add /index.html in url</p>`); 
+        res.sendFile(path.join(__dirname, "../public/index.html"));
    	});
 	}
  
 	private handleSocketConnection(): void {
+    console.log("Called");
     this.io.on("connection", socket => {
       console.log("Connected : "+socket.id);	
       const existingSocket = this.activeSockets.find(
