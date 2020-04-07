@@ -18,7 +18,6 @@ function unselectUsersFromList() {
 
 function createUserItemContainer(socketId) {
   const userContainerEl = document.createElement("div");
-
   const usernameEl = document.createElement("p");
 
   userContainerEl.setAttribute("class", "active-user");
@@ -61,10 +60,17 @@ function updateUserList(socketIds) {
     }
   });
 }
+
+function updateSelfSocketId(socketId) {
+  const userContainer = document.getElementById("self-id");
+  userContainer.append("Your Socket-Id : "+socketId);
+}
+
 const host = window.location.host;
 const socket = io.connect(host);
 
 socket.on("update-user-list", ({ users }) => {
+  updateSelfSocketId(socket.id);
   updateUserList(users);
 });
 
@@ -86,7 +92,6 @@ socket.on("call-made", async data => {
       socket.emit("reject-call", {
         from: data.socket
       });
-
       return;
     }
   }
@@ -139,7 +144,6 @@ navigator.getUserMedia(
     if (localVideo) {
       localVideo.srcObject = stream;
     }
-
     stream.getTracks().forEach(track => peerConnection.addTrack(track, stream));
   },
   error => {
